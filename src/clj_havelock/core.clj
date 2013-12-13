@@ -92,10 +92,10 @@
 ; Trading API
 
 (defn create-order
-  [& {:keys [apikey asset action price units]
+  [& {:keys [apikey symbol action price units]
        :or {apikey (@config :apikey)}}]
   (let [params {:key apikey
-    :symbol (upper-case (name asset)) 
+    :symbol (upper-case (name symbol)) 
     :action (lower-case (name action))
     :price price
     :units units}]
