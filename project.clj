@@ -1,4 +1,4 @@
-(defproject clj-havelock "0.0.1"
+(defproject clj-havelock "0.0.2"
   :description "API Library for Havelock Investments"
   :url "https://github.com/jphackworth/clj-havelock"
   :license {:name "Mozilla Public License Version 2.0"
