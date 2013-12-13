@@ -2,6 +2,8 @@
 
 A Clojure library providing support for the [Havelock Investments](https://www.havelockinvestments.com/index.php) [Trading API](https://www.havelockinvestments.com/apidoc.php).
 
+This is alpha software. Do not use in production.
+
 ## Usage
 
 ### In REPL
@@ -10,7 +12,7 @@ A Clojure library providing support for the [Havelock Investments](https://www.h
 
 ### Dependency in project.clj 
 
-    [clj-havelock "0.0.3"]
+    [clj-havelock "0.0.4"]
 
 ### In namespace
 
@@ -38,7 +40,7 @@ Since Havelock allows granulary key permissions, this library lets you either se
 
 To set a global api key (for example in REPL):
 
-    (require '[clj-havelock :as hl])
+    (use '[clj-havelock])
     (configure :apikey "abcd")
     (get-portfolio)
 
@@ -49,28 +51,31 @@ Or you can use a specific key, per-function instead:
 
 ## Account API Usage
 
-_All of the following functions accept an optional keyword paramenter :apikey. This key takes precedence over a global apikey if present_
+All of the following functions accept an optional keyword paramenter :apikey. This key takes precedence over a global apikey if present
 
     (get-portfolio)
     (get-open-orders)
     (get-balance)
     (deposit-bitcoins)
 
-    (get-transaction-history :limit 5 :sortby "ASC|DESC" :sinceid transactionid :sincets timestamp)
+    (get-transaction-history :limit 5 :sortby "ASC" :sinceid transactionid :sincets timestamp)
     (withdraw-bitcoins :amount amount :address address)
 
 ## Trading API Usage
 
-_All of the following functions accept an optional keyword paramenter :apikey. This key takes precedence over a global apikey if present_
+All of the following functions accept an optional keyword paramenter :apikey. This key takes precedence over a global apikey if present
 
-    (create-order :)       
+All parameters are required.
 
+    (create-order :sym "hif" :action :buy :price 0.00001 :units 1)
+    (create-order :sym "hif" :action :sell :price 10 :units 1)
 
+    (cancel-order :id orderid)
 
+## Bugs
 
-
-
-FIXME
+- No tests
+- API subject to change
 
 ## License
 
