@@ -10,7 +10,7 @@ A Clojure library providing support for the [Havelock Investments](https://www.h
 
 ### Dependency in project.clj 
 
-    [clj-havelock "0.0.1"]
+    [clj-havelock "0.0.3"]
 
 ### In namespace
 
@@ -21,14 +21,14 @@ A Clojure library providing support for the [Havelock Investments](https://www.h
 The following functions do not require an API key.
 
     (get-ticker) ; basic ticker info (last and units) for all listings 
-    (get-ticker :symbol "hif") ; only for specific symbol
+    (get-ticker :sym "hif") ; only for specific symbol
     (get-ticker-full) ; detailed ticker info for all listings
-    (get-ticker-full :symbol "hif") ; only for specified symbol
+    (get-ticker-full :sym "hif") ; only for specified symbol
     (get-orderbook)
-    (get-orderbook :symbol "hif")
+    (get-orderbook :sym "hif")
     (get-orderbook-full)
-    (get-orderbook-full :symbol "hif")
-    (get-dividends :symbol "hif")
+    (get-orderbook-full :sym "hif")
+    (get-dividends :sym "hif")
 
 ## API Authentication
 
@@ -63,7 +63,7 @@ _All of the following functions accept an optional keyword paramenter :apikey. T
 
 _All of the following functions accept an optional keyword paramenter :apikey. This key takes precedence over a global apikey if present_
 
-    (create-order)       
+    (create-order :)       
 
 
 

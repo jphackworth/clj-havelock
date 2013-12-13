@@ -40,18 +40,18 @@
 ; General API 
 ;
 ; General Request assumes unauthenticated request, 
-; and only optional parameter is symbol
+; and only optional parameter is sym
 
-(defn get-ticker [& {:keys [symbol]}] 
-  (post-data :cmd "ticker" :params {:symbol symbol}))
-(defn get-ticker-full [& {:keys [symbol]}] 
-  (post-data :cmd "tickerfull" :params {:symbol symbol}))
-(defn get-orderbook [& {:keys [symbol]}]
-  (post-data :cmd "orderbook" :params {:symbol symbol}))
-(defn get-orderbook-full [& {:keys [symbol]}]
-  (post-data :cmd "orderbookfull" :params {:symbol symbol}))
-(defn get-dividends [& {:keys [symbol]}]
-  (post-data :cmd "dividends" :params {:symbol symbol}))
+(defn get-ticker [& {:keys [sym]}] 
+  (post-data :cmd "ticker" :params {:sym sym}))
+(defn get-ticker-full [& {:keys [sym]}] 
+  (post-data :cmd "tickerfull" :params {:sym sym}))
+(defn get-orderbook [& {:keys [sym]}]
+  (post-data :cmd "orderbook" :params {:sym sym}))
+(defn get-orderbook-full [& {:keys [sym]}]
+  (post-data :cmd "orderbookfull" :params {:sym sym}))
+(defn get-dividends [& {:keys [sym]}]
+  (post-data :cmd "dividends" :params {:sym sym}))
 
 ; Account API 
 
@@ -92,10 +92,10 @@
 ; Trading API
 
 (defn create-order
-  [& {:keys [apikey symbol action price units]
+  [& {:keys [apikey sym action price units]
        :or {apikey (@config :apikey)}}]
   (let [params {:key apikey
-    :symbol (upper-case (name symbol)) 
+    :sym (upper-case (name sym)) 
     :action (lower-case (name action))
     :price price
     :units units}]
