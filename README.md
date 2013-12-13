@@ -40,13 +40,13 @@ Since Havelock allows granulary key permissions, this library lets you either se
 
 To set a global api key (for example in REPL):
 
-    (use '[clj-havelock])
+    (use 'clj-havelock.core)
     (configure :apikey "abcd")
     (get-portfolio)
 
 Or you can use a specific key, per-function instead:
 
-    (require '[clj-havelock :as hl])
+    (use 'clj-havelock.core)
     (get-portfolio :apikey "efgh")
 
 ## Account API Usage
