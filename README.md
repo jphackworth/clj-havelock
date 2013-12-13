@@ -1,8 +1,22 @@
 # clj-havelock
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure library providing support for the [Havelock Investments](https://www.havelockinvestments.com/index.php) [Trading API](https://www.havelockinvestments.com/apidoc.php).
 
-## Usage
+## Installation
+
+### In REPL
+
+    (use 'clj-havelock.core)
+
+### Dependency in project.clj 
+
+    [clj-havelock "0.0.1"]
+
+### In namespace
+
+    (:require [clj-havelock :as hl])
+
+
 
 FIXME
 

@@ -48,7 +48,7 @@
   (post-data :cmd "tickerfull" :params {:symbol symbol}))
 (defn get-orderbook [& {:keys [symbol]}]
   (post-data :cmd "orderbook" :params {:symbol symbol}))
-(defn get-orderbookfull [& {:keys [symbol]}]
+(defn get-orderbook-full [& {:keys [symbol]}]
   (post-data :cmd "orderbookfull" :params {:symbol symbol}))
 (defn get-dividends [& {:keys [symbol]}]
   (post-data :cmd "dividends" :params {:symbol symbol}))
