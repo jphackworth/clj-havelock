@@ -59,6 +59,8 @@ Account and Trading-related functions require authentication with an API key wit
 
 All authenticated requests must include the api key as the first argument.
 
+Configure your API keys and permissions here: https://www.havelockinvestments.com/api.php
+
 ## Account API Usage
 
 ```clojure
