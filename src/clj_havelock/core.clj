@@ -17,7 +17,7 @@
   (into {}
         (for [[k v] m]
           (if (= :id k) 
-            [k (read-string v)] ; specific to handle order ids
+            [k (if (string? v) (read-string v) v)] ; specific to handle order ids
             [k
              (cond (map? v)
                      (parse-numbers v)
@@ -362,12 +362,12 @@
   - :apirate API usage rate for past 600 seconds
   - :id Order ID if successful "
     
-  [apikey sym action price units]
+  [apikey sym {:keys [action price units] :as opts}]
   (api-call {:cmd "ordercreate" 
              :params 
                {:key apikey 
                 :symbol sym 
-                :action action  
+                :action (name action)  
                 :price price 
                 :units units}}))
 
@@ -389,7 +389,8 @@
   [apikey id] 
   (api-call {:cmd "ordercancel" 
              :params 
-               {:id id}}))
+               {:key apikey
+                :id id}}))
 
 ; FIXME: Disabled till better testing/validation of addresses added
 ; (defn withdraw-bitcoins
