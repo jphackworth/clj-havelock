@@ -16,24 +16,26 @@
   [m]
   (into {}
         (for [[k v] m]
-          [k
-           (cond (map? v)
-                   (parse-numbers v)
-                   
-                 (vector? v)
-                   (into [] (map parse-numbers v))
+          (if (= :id k) 
+            [k (read-string v)] ; specific to handle order ids
+            [k
+             (cond (map? v)
+                     (parse-numbers v)
+                     
+                   (vector? v)
+                     (into [] (map parse-numbers v))
 
-                 (or (nil? v)
-                     (number? v))
-                   v
+                   (or (nil? v)
+                       (number? v))
+                     v
 
-                 (and (string? v)
-                      (->> v
-                           (re-matches #"^(\d*\.?\d*)$")))
-                   (Double/parseDouble v)
+                   (and (string? v)
+                        (->> v
+                             (re-matches #"^(\d*\.?\d*)$")))
+                     (Double/parseDouble v)
 
-                 true
-                   v)])))
+                   true
+                     v)]))))
 
 (defn url-for [base-url cmd] (format "%s/%s" base-url cmd))
  
@@ -80,10 +82,9 @@
     
     (http/post url http-options callback)))
 
+;
 ; General API 
 ;
-; General Request assumes unauthenticated request, 
-; and only optional parameter is sym
 
 (defn get-ticker [& [sym]]
   "Get basic ticker information from Havelock for one or all listed funds 
@@ -145,7 +146,7 @@
   
   Example:
   
-    @(get-order-book \"HIF\")
+    @(get-orderbook-full \"HIF\")
   
   Returns a map with following keys:
   - :status ('ok' or 'error') 
@@ -176,7 +177,9 @@
              :params 
                {:symbol sym}}))
 
+;
 ; Account API 
+;
 
 (defn get-portfolio
   "Returns your Havelock Investments Portfolio
@@ -337,11 +340,7 @@
                                           :sincets sincets}}))
 ;
 ; Trading API
-
-; TODO: 
-;   
-;   Check impact of trade ids as float for creation/cancelling
-;   might need to parse :id values differently
+;
 
 (defn create-order
   "Create an order on Havelock 
@@ -376,7 +375,7 @@
   "Cancel a specific open order on Havelock 
   
   Required arguments:
-  - apikey: API key (string) with cancel-order permissions 
+  - apikey: API key (string) with Cancel Order permissions 
   - id: Open order ID to cancel (number)
   
   Example:
