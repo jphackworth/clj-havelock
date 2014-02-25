@@ -12,7 +12,7 @@ This is alpha software. Do not use in production.
 
 ### Dependency in project.clj 
 
-    [clj-havelock "0.0.4"]
+    [clj-havelock "0.1.0"]
 
 ### In namespace
 
@@ -79,6 +79,6 @@ All parameters are required.
 
 ## License
 
-Copyright © 2013 John P. Hackworth
+Copyright © 2014 John P. Hackworth
 
 Distributed under the Mozilla Public License Version 2.0
